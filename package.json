@@ -26,7 +26,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://rahulchaudhary222.github.io/assesment2",
+  "homepage": "https://rahulchaudhary222.github.io/exercise2",
   "eslintConfig": {
     "extends": [
       "react-app",
