@@ -1,0 +1,25 @@
+.searchField {
+  height: 6vh;
+  width: 40vw;
+  border-radius: 200px;
+  font-size: 20px;
+}
+.Home {
+  text-align: center;
+}
+.searchDiv {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+.ImageDiv {
+  display: flex;
+  justify-content: space-around;
+}
+.Image {
+  width: 200px;
+  height: 200px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
