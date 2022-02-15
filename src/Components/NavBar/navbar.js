@@ -24,7 +24,9 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <h4 onClick={() => navigate("")}>Home</h4>
+          <h4 style={{ color: "red" }} onClick={() => navigate("")}>
+            Home
+          </h4>
           <h4 onClick={() => navigate("news")}>News</h4>
         </Toolbar>
       </AppBar>
