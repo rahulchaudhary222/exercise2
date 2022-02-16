@@ -6,10 +6,11 @@ import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import axios from "axios";
+import MockData from "../SearchMockData";
 
 const Home = () => {
   const [search, setSearch] = useState("");
-  const [Data, setData] = useState(null);
+  const [Data, setData] = useState(MockData);
   const [images, setImages] = useState([]);
   const [organic_results, setOrganic_results] = useState([]);
   const imageCard = (url) => {
@@ -22,6 +23,8 @@ const Home = () => {
       let imgs = [...Data.knowledge_graph.header_images];
       let urls = imgs.map((e) => e.image);
       setImages(urls);
+      let orgRes = [...Data.organic_results];
+      setOrganic_results(orgRes);
     }
   }, [Data]);
   const OnSearch = () => {
@@ -60,7 +63,16 @@ const Home = () => {
         </Button>
       </div>
       <div id="result">
+        <h2>Images</h2>
         <div className="ImageDiv">{images.map((e) => imageCard(e))}</div>
+        <div>
+          {organic_results.map((e) => (
+            <div className="OrganicResult">
+              <a href={`${e.link}`}>{e.title}</a>
+              <p>{e.snippet}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
