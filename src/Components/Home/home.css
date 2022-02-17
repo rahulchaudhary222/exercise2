@@ -1,5 +1,5 @@
 .searchField {
-  height: 6vh;
+  height: 60px;
   width: 40vw;
   border-radius: 200px;
   font-size: 20px;
@@ -15,6 +15,7 @@
 .ImageDiv {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 .Image {
   width: 200px;

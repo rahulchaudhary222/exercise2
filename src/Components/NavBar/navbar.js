@@ -5,10 +5,8 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import "./navbar.css";
-import { useNavigate } from "react-router-dom";
 
-export default function PrimarySearchAppBar() {
-  let navigate = useNavigate();
+const NavBar = ({ navigate }) => {
   const [page, setpage] = useState(0);
   useEffect(() => {
     if (window.location.pathname.includes("news")) {
@@ -31,6 +29,7 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton>
           <h4
+            data-testid="home_btn"
             onClick={() => navigate("exercise2")}
             style={page == 0 ? { color: "white" } : {}}
           >
@@ -46,4 +45,5 @@ export default function PrimarySearchAppBar() {
       </AppBar>
     </Box>
   );
-}
+};
+export default NavBar;

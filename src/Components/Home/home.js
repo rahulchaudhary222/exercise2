@@ -14,9 +14,13 @@ const Home = () => {
   const [images, setImages] = useState([]);
   const [organic_results, setOrganic_results] = useState([]);
   const [loading, setLoading] = useState(false);
-  const imageCard = (url) => {
+  const imageCard = (url, index) => {
     return (
-      <div style={{ backgroundImage: `url("${url}")` }} className="Image"></div>
+      <div
+        key={index}
+        style={{ backgroundImage: `url("${url}")` }}
+        className="Image"
+      ></div>
     );
   };
   useEffect(() => {
@@ -24,10 +28,14 @@ const Home = () => {
       let imgs = [...Data.knowledge_graph.header_images];
       let urls = imgs.map((e) => e.image);
       setImages(urls);
+    } else {
+      setImages([]);
     }
     if (Data?.organic_results) {
       let orgRes = [...Data.organic_results];
       setOrganic_results(orgRes);
+    } else {
+      setOrganic_results([]);
     }
   }, [Data]);
   const OnSearch = () => {
@@ -72,7 +80,7 @@ const Home = () => {
         </Button>
       </div>
       {loading && (
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
           <CircularProgress />
         </Box>
       )}
@@ -81,14 +89,16 @@ const Home = () => {
           {images.length > 0 && (
             <div>
               <h2>Images</h2>
-              <div className="ImageDiv">{images.map((e) => imageCard(e))}</div>
+              <div className="ImageDiv">
+                {images.map((e, i) => imageCard(e, i))}
+              </div>
             </div>
           )}
 
           {organic_results.length > 0 && (
             <div>
-              {organic_results.map((e) => (
-                <div className="OrganicResult">
+              {organic_results.map((e, i) => (
+                <div className="OrganicResult" key={i}>
                   <a href={`${e.link}`}>{e.title}</a>
                   <p>{e.snippet}</p>
                 </div>

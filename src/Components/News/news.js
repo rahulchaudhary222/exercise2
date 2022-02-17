@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import NewsData from "../NewsMockData";
 import { Button, CircularProgress } from "@mui/material";
 import axios from "axios";
+import Box from "@mui/material/Box";
 import "./news.css";
 
 const News = () => {
@@ -33,15 +34,14 @@ const News = () => {
     );
   }, []);
 
-  const NewsTile = (element) => {
+  const NewsTile = (element, index) => {
     return (
-      <div className="newsTile">
+      <div className="newsTile" data-testid={`news_tile-${index}`} key={index}>
         <a href={`${element.link}`}>{element.title}</a>
         <div className="newsContent">
           <div>
             <p>{element.snippet}</p>
           </div>
-
           <div
             className="newsImg"
             style={{ backgroundImage: `url("${element.thumbnail}")` }}
@@ -52,13 +52,17 @@ const News = () => {
   };
 
   return (
-    <div>
-      {loading && <CircularProgress />}
+    <div data-testid="news">
+      {loading && (
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <CircularProgress />
+        </Box>
+      )}
       {Data && (
         <div>
           {Data && (
             <div className="newsContainer">
-              {Data.news_results.map((e) => NewsTile(e))}
+              {Data.news_results.map((e, i) => NewsTile(e, i))}
             </div>
           )}
           {Data && (
@@ -77,8 +81,11 @@ const News = () => {
                   Back
                 </Button>
               )}
-              <div className="page">{Data.serpapi_pagination.current}</div>
+              <div className="page" data-testid="page">
+                {Data.serpapi_pagination.current}
+              </div>
               <Button
+                data-testid="next_btn"
                 variant="contained"
                 onClick={() =>
                   GetNews(
